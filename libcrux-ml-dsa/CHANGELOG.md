@@ -5,12 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.0.9] (2026-05-13)
+
+### Fixed
+
+- [#1398](https://github.com/cryspen/libcrux/pull/1398): Fix incorrect AVX2 use_hint implementation
+- [#1395](https://github.com/cryspen/libcrux/pull/1395): Fully reduce iNTT inputs on AVX2
+
+### Changed
+
+- [#1434](https://github.com/cryspen/libcrux/pull/1434): Update dependencies: `core-models`, `libcrux-intrinsics`
+- [#1433](https://github.com/cryspen/libcrux/pull/1433): Update dependencies: `libcrux-sha3`
+
+## [0.0.8] (2026-03-19)
 
 ### Fixed
 
 - [#1348](https://github.com/cryspen/libcrux/pull/1348): Fix incorrect hint decoding
 - [#1347](https://github.com/cryspen/libcrux/pull/1347): Fix incorrect norm check of signer response during verification
+
+### Changed
+
+- [#1368](https://github.com/cryspen/libcrux/pull/1368): Update dependencies: `libcrux-sha3`
 
 ## [0.0.7] (2026-02-12)
 

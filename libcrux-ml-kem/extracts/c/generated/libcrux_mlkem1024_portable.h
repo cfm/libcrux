@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: MIT or Apache-2.0
  *
  * This code was generated with the following revisions:
- * Charon: 146b7dce58cb11ca8010b1c947c3437a959dcd88
- * Eurydice: cdf02f9d8ed0d73f88c0a495c5b79359a51398fc
- * Karamel: 8e7262955105599e91f3a99c9ab3d3387f7046f2
- * F*: 4b3fc11774003a6ff7c09500ecb5f0145ca6d862
- * Libcrux: 191ac203df9eaaf55c1a5b3559419f99e1127e2d
+ * Charon: 377317d6b25702c46ffff072fa00a3e32095e46f
+ * Eurydice: b227478b67c6a6e2ff611f978f10d6b7f26472ac
+ * Karamel: 4e64d915da3c172d1dfad805b8e1a46beff938bc
+ * F*: 32dcc97722b61224e0e9c5b447ca72c4cd9ffcf9
+ * Libcrux: db8f44d124d91d4c2406ee47c321ed556b38aa93
  */
 
 #ifndef libcrux_mlkem1024_portable_H
@@ -40,14 +40,15 @@ Eurydice_arr_60 libcrux_ml_kem_mlkem1024_portable_decapsulate(
  The input is a reference to an [`MlKem1024PublicKey`] and
  [`SHARED_SECRET_SIZE`] bytes of `randomness`.
 */
-tuple_2b libcrux_ml_kem_mlkem1024_portable_encapsulate(
+tuple_4d libcrux_ml_kem_mlkem1024_portable_encapsulate(
     const Eurydice_arr_00 *public_key, Eurydice_arr_60 randomness);
 
 /**
  Generate ML-KEM 1024 Key Pair
 */
 libcrux_ml_kem_mlkem1024_MlKem1024KeyPair
-libcrux_ml_kem_mlkem1024_portable_generate_key_pair(Eurydice_arr_06 randomness);
+libcrux_ml_kem_mlkem1024_portable_generate_key_pair(
+    Eurydice_arr_060 randomness);
 
 /**
  Validate a private key.

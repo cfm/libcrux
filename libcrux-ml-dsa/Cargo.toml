@@ -1,7 +1,7 @@
 [package]
 name = "libcrux-ml-dsa"
 description = "Libcrux ML-DSA implementation"
-version = "0.0.7"
+version = "0.0.9"
 readme = "README.md"
 
 authors.workspace = true
@@ -10,7 +10,15 @@ homepage.workspace = true
 edition.workspace = true
 repository.workspace = true
 
-exclude = [ "boring.sh", "/cg", "*.sh", "*.yaml", "/proofs", "tests/nistkats.rs", "tests/kats"]
+exclude = [
+    "boring.sh",
+    "/cg",
+    "*.sh",
+    "*.yaml",
+    "/proofs",
+    "tests/nistkats.rs",
+    "tests/kats",
+]
 
 [lib]
 bench = false # so libtest doesn't eat the arguments to criterion
@@ -20,22 +28,20 @@ bench = false # so libtest doesn't eat the arguments to criterion
 [dependencies]
 libcrux-sha3.workspace = true
 libcrux-intrinsics.workspace = true
-libcrux-platform = { version = "0.0.3", path = "../crates/sys/platform" }
-libcrux-macros = { version = "=0.0.3",  path = "../crates/utils/macros" }
+libcrux-platform.workspace = true
+libcrux-macros.workspace = true
 hax-lib.workspace = true
 tls_codec = { version = "0.4.2", features = [
     "derive",
 ], default-features = false, optional = true }
 
 [dev-dependencies]
-rand = { version = "0.9" }
+rand = { version = "0.10" }
 hex = { version = "0.4.3", features = ["serde"] }
 serde_json = { version = "1.0" }
 serde = { version = "1.0", features = ["derive"] }
 criterion = "0.8"
-libcrux-kats = { path = "../crates/testing/kats", features = [
-    "mldsa"
-] }
+libcrux-kats = { workspace = true, features = ["mldsa"] }
 
 
 # This doesn't build on intel macos.
@@ -43,7 +49,11 @@ libcrux-kats = { path = "../crates/testing/kats", features = [
 pqcrypto-mldsa = { version = "0.1.0" } #, default-features = false
 
 [target.'cfg(hax)'.dependencies]
-core-models = { path = "../crates/utils/core-models", version = "0.0.5" }
+core-models = { path = "../crates/utils/core-models", version = "0.0.6" }
+
+[target.'cfg(valgrind_ct_test)'.dependencies]
+# Used for constant time testing using valgrind
+crabgrind.workspace = true
 
 [features]
 default = ["std", "mldsa44", "mldsa65", "mldsa87"]
@@ -80,4 +90,4 @@ name = "ml-dsa"
 harness = false
 
 [lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(hax)'] }
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(hax)', 'cfg(valgrind_ct_test)'] }

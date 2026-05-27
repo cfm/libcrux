@@ -3,9 +3,10 @@ use std::{
     io::{Read, Write},
 };
 
-use libcrux::{drbg::Drbg, kem};
-
 use clap::{Parser, Subcommand};
+use libcrux::primitives::kem;
+use rand::{rngs::SysRng, SeedableRng};
+use rand_chacha::ChaCha20Rng;
 
 #[derive(Subcommand)]
 enum GenerateCli {
@@ -84,7 +85,7 @@ fn main() {
         kem::Algorithm::MlKem768
     };
 
-    let mut rng = Drbg::new(libcrux::digest::Algorithm::Sha256).unwrap();
+    let mut rng = ChaCha20Rng::try_from_rng(&mut SysRng).unwrap();
 
     match cli.cmd {
         GenerateCli::GenerateKey { out: file } => {
